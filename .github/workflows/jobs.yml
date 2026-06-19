@@ -24,7 +24,7 @@ jobs:
 
       - name: 🔐 Use Repository Secret
         env:
-          MY_SECRET: ${{ secrets.MY_API_KEY }}  # Never echoed in logs
+          MY_SECRET: ${{ secrets.MY_API_KEY }}  #Never echoed in logs
         run: |
           echo "Secret is configured: ${{ secrets.MY_API_KEY != '' }}"
           echo "Using secret safely in script (masked in logs)"
