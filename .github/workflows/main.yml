@@ -8,7 +8,7 @@ jobs:
         run: echo "Hello from GH-200 seesion from microsoft"
 
       - name: copy code into runner
-        uses: action/checkout@v7
+        uses: actions/checkout@v7
 
       - name: List files
         run: ls - la
