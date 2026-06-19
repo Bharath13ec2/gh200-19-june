@@ -6,3 +6,9 @@ jobs:
     steps:
       - name: say hello
         run: echo "Hello from GH-200 seesion from microsoft"
+
+      - name: copy code into runner
+        uses: action/checkout@v7
+
+      - name: List files
+        run: ls - la
