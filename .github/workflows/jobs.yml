@@ -1,29 +1,43 @@
-name: GH-200 CoHack
+name: 🚀 CoHack Journey
 
-on: push
+on: [push]
+
+env:                                     # Workflow-level variable
+  WORKSHOP_NAME: "GH-200 CoHack"
+  TRAINER: "Himanshu Kumar"
 
 jobs:
-  hello-world:
+  setup:
     runs-on: ubuntu-latest
+    env:
+      JOB_ENV: "Setup Phase"             # Job-level variable
     steps:
-      - name: Say Hello
-        run: echo "Hello from GH-200 Session from Himanshu!!!"
-
-      - name: copy code into runner
-        uses: actions/checkout@v6
-
-      - name: List files
-        run: ls -la
-
-      - name: Generate ASCII Art
+      - name: 🔍 Show Variables
+        env:
+          STEP_VAR: "Step-level value"   # Step-level variable
         run: |
-          sudo apt-get install -y figlet
-          figlet "GH-200 CoHACK"
-          echo "-------------------------"
-          figlet -f digital "GitHub Actions"
-          echo "ASCII art generated"
+          echo "Workshop: $WORKSHOP_NAME"
+          echo "Job Env: $JOB_ENV"
+          echo "Step Var: $STEP_VAR"
+          echo "GitHub Actor: $GITHUB_ACTOR"
+          echo "Repo: $GITHUB_REPOSITORY"
 
-      - name: Run Shell Script
+      - name: 🔐 Use Repository Secret
+        env:
+          MY_SECRET: ${{ secrets.MY_API_KEY }}  # Never echoed in logs
         run: |
-          chmod +x ./scripts/welcome.sh
-          ./scripts/welcome.sh
+          echo "Secret is configured: ${{ secrets.MY_API_KEY != '' }}"
+          echo "Using secret safely in script (masked in logs)"
+
+
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Show variable
+        run: |
+          echo "Workshop: $WORKSHOP_NAME"
+          echo "Job Env: $JOB_ENV"
+          echo "Step Var: $STEP_VAR"
+          echo "GitHub Actor: $GITHUB_ACTOR"
+          echo "Repo: $GITHUB_REPOSITORY"
+          echo "completed"
